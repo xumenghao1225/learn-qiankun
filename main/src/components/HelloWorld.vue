@@ -2,14 +2,19 @@
   <div class="hello">
     <ul>
       <li>
-        <router-link to="/sub-vue">
+        <router-link to="/vue3">
           vue3.x
         </router-link>
       </li>
-      <li>vue3.x</li>
+      <li>
+        <router-link to="/vue2">
+          vue2.x
+        </router-link>
+      </li>
       <li>vue3.x</li>
     </ul>
-    <router-view></router-view>
+    <div id="basecontainer">
+    </div>
   </div>
 </template>
 
