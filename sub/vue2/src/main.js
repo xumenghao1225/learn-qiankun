@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
-
+import { router } from './router'
 Vue.config.productionTip = false
-/* eslint-disable */
 let instance = null
 
 function render (props) {
   const { container } = props
   instance = new Vue({
+    router,
     render: h => h(App)
   }).$mount(container ? container.querySelector('#app') : '#app')
 }
@@ -27,6 +27,8 @@ export async function bootstrap () {
  */
 export async function mount (props) {
   render(props)
+  console.log("vue2 app mounted", props);
+  getGlobalState(props)
 }
 
 /**
@@ -34,4 +36,11 @@ export async function mount (props) {
  */
 export async function unmount () {
   instance = null
+}
+
+
+function getGlobalState(props){
+  props.onGlobalStateChange((item)=>{
+    console.log('onGlobalStateChange', item)
+  },true)
 }

@@ -5,9 +5,8 @@ import store from "./store";
 import "./patch-path";
 
 function render(props: any) {
-  const { container, fn = null } = props;
-  if (fn) getGlobalState(fn);
   const app = createApp(App);
+  const { container, fn = null } = props;
   app
     .use(store)
     .use(router)
@@ -30,8 +29,8 @@ export async function bootstrap() {
  */
 export async function mount(props: any) {
   console.log("mount vue3", props);
-  props.setGlobalState({ state: 1212 });
   render(props);
+  props.setGlobalState({ token: 1212 });
 }
 
 /**
@@ -39,11 +38,4 @@ export async function mount(props: any) {
  */
 export async function unmount() {
   createApp(App).unmount();
-}
-type fnType = {
-  getMainState: () => void;
-};
-function getGlobalState(fn: fnType) {
-  const { getMainState } = fn;
-  console.log(getMainState());
 }
